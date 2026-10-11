@@ -1,7 +1,7 @@
-// IPS 4주차 가설 체인 → 붙여넣기용 정적 SVG(ips/w4/hypothesis-chain.svg).
+// IPS 4주차 가설 체인 → 붙여넣기용 정적 SVG(w4/hypothesis-chain.svg).
 // 브라우저에서 그려진 박스 위치와 글자 줄을 그대로 재서 만든다. CHAIN 글을 바꾸면 다시 뽑는다.
 // 글자 색·크기·굵기는 그려진 스타일(getComputedStyle)을 읽고, 반투명 색은 박스 바탕과 섞어 단색으로 쓴다.
-// 쓰는 법: node tools/dev-server.js . 5511 → 1440 폭 창에서 http://localhost:5511/ips/w4/ 를 열고
+// 쓰는 법: node tools/dev-server.js . 5511 → 1440 폭 창에서 http://localhost:5511/w4/ 를 열고
 //   콘솔에서 `await import('/tools/w4-chain-svg.js').then(m => m.default())` → 나온 문자열을 hypothesis-chain.svg로 저장.
 //   미니멀 버전은 `m.default('#tree-min')` → hypothesis-chain-min.svg.
 export default async function chainSVG(selector = '#tree-detail') {
