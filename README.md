@@ -1,6 +1,6 @@
 # IPS · Iterative Problem Solving
 
-Phi Design Institute IPS 과제를 주차별로 모으는 저장소. 주차마다 폴더 하나(`w4/`, `w5/` …)에 정적 페이지를 둔다.
+Phi Design Institute IPS 과제를 주차별로 모으는 저장소. 주차마다 폴더 하나(`WK05/`, `WK06/` …)에 과제 원문과 산출물을 둔다. 4주차만 예전 이름 `w4/`(주소 유지).
 
 - 페이지: https://yongzu.github.io/IPS/ (GitHub Pages — `main` 브랜치 루트를 그대로 배포, 빌드 없음)
 - 로컬: `node tools/dev-server.js . 5511` → http://localhost:5511/ (파일을 고치면 열린 탭이 새로고침된다)
@@ -12,12 +12,14 @@ Phi Design Institute IPS 과제를 주차별로 모으는 저장소. 주차마�
 |---|---|---|
 | 1~3라운드 | `yongzu/Phi_Brain` 저장소 `ips/` | Phi Brain · Discover·Define·Develop·Deliver (https://yongzu.github.io/Phi_Brain/ips/) — 그대로 둔다 |
 | 4주차 | `w4/` | 인스타그램 저장(Saved) — 목적 · 사용자 분석 · 가설 체인 · 피드백 반영 · 선택 이유 · 확인 계획 |
+| 5주차 | `WK05/` | 가설 검증 인터뷰 — 사용자 선정 기준 · 검증 여부 판단 기준 · 인터뷰 답변 (마감 10/11, 지각 10/12) |
 
 4주차는 2026-10-11에 `yongzu/Phi_Brain`의 `ips/w4/`에서 커밋 이력째로 옮겨 왔다. 옛 주소 `/Phi_Brain/ips/w4/`는 이 저장소로 넘겨준다.
 
 ## 파일
 
 - `index.html` — 주차 목록. 스타일은 `w4/w4.css`를 같이 쓴다.
+- `WK05/README.md` — 5주차 과제 원문
 - `w4/` — `index.html`(본문) · `w4.css` · `w4.js`(가설 체인 CHAIN 데이터와 그리기) · `hypothesis-chain.svg` · `hypothesis-chain-min.svg`(피그잼 붙여넣기용)
 - `cursor-*.svg` — 커서(Phi Brain 프로토타입과 같은 것)
 - `tools/dev-server.js` — 로컬 미리보기 서버
