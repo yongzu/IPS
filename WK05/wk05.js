@@ -118,17 +118,18 @@
   // ---- 가설 체인 트리(4주차 w4.js에서) ----
   const parentOf = new Map(), byId = new Map();
   (function index(n, parent) { byId.set(n.id, n); if (parent) parentOf.set(n.id, parent.id); n.children?.forEach(c => index(c, n)); })(CHAIN, null);
-  function nodeHTML(n) {
+  // 페이지에는 번호 + 판정 + 가설 문장만 그린다. 근거 메모는 data-notes="on"일 때만(자세한 근거는 deliverables.md)
+  function nodeHTML(n, withNotes) {
     const cls = ['node', n.top && 'is-top', n.picked && 'is-picked', n.infer && 'is-infer', n.held && 'is-held'].filter(Boolean).join(' ');
-    const kids = n.children?.length ? `<ul>${n.children.map(nodeHTML).join('')}</ul>` : '';
+    const kids = n.children?.length ? `<ul>${n.children.map(c => nodeHTML(c, withNotes)).join('')}</ul>` : '';
     const tag = [n.top ? '현상' : n.id, n.status].filter(Boolean).join(' · ');
-    const notes = Object.entries(n.note || {}).map(([k, v]) => `<span class="note"><b>${esc(k === '바뀐점' ? '바뀐 점' : k)}</b> ${esc(v)}</span>`).join('');
+    const notes = !withNotes ? '' : Object.entries(n.note || {}).map(([k, v]) => `<span class="note"><b>${esc(k === '바뀐점' ? '바뀐 점' : k)}</b> ${esc(v)}</span>`).join('');
     return `<li><button type="button" class="${cls}" data-node="${esc(n.id)}"><span class="node-id">${esc(tag)}</span><span class="node-text">${esc(n.text)}</span>${notes && `<span class="node-notes">${notes}</span>`}</button>${kids}</li>`;
   }
   const trees = [];
   function mountTree(wrap) {
     const treeEl = wrap.querySelector('.tree'), svg = wrap.querySelector('.tree-lines');
-    treeEl.innerHTML = nodeHTML(CHAIN);
+    treeEl.innerHTML = nodeHTML(CHAIN, wrap.dataset.notes === 'on');
     const box = id => treeEl.querySelector(`[data-node="${CSS.escape(id)}"]`);
     // 가로 트리가 들어갈 폭인지 재서 고른다: 넓음(4×228+3×40) → 중간(4×190+3×36) → 세로 들여쓰기
     function fit() {
