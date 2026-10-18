@@ -13,6 +13,7 @@ Phi Design Institute IPS 과제를 주차별로 모으는 저장소. 주차마�
 | 1~3라운드 | `yongzu/Phi_Brain` 저장소 `ips/` | Phi Brain · Discover·Define·Develop·Deliver (https://yongzu.github.io/Phi_Brain/ips/) — 그대로 둔다 |
 | 4주차 | `w4/` | 인스타그램 저장(Saved) — 목적 · 사용자 분석 · 가설 체인 · 피드백 반영 · 선택 이유 · 확인 계획 |
 | 5주차 | `WK05/` | 가설 검증 인터뷰 — 사용자 선정 기준 · 검증 여부 판단 기준 · 인터뷰 답변 · 다시 만든 가설 체인 (https://yongzu.github.io/IPS/WK05/) |
+| 6주차 | `WK06/` | 가설 하나 다시 검증 — 원칙 · 가설 · 선정 기준 · 지지/반증/착시 기준 · 질문 시뮬레이션 (`form.md`, 인터뷰 전) |
 
 4주차는 2026-10-11에 `yongzu/Phi_Brain`의 `ips/w4/`에서 커밋 이력째로 옮겨 왔다. 옛 주소 `/Phi_Brain/ips/w4/`는 이 저장소로 넘겨준다.
 
