@@ -78,6 +78,7 @@
 - 검증할 가설은 저장 쪽(H1) · 찾는 쪽(H2) 둘 다(사용자 결정) — [../WK06/form.md](../WK06/form.md)
 - 디스코드 인터페이스디자인 방법(휴리스틱 평가 · I.A. 카드 소팅 + 트리 테스트 · 유저 테스트 · I.A.)을 적용한 진행안 — [process.md](./process.md). 진입 축은 6주차 인터뷰 가설이 아니라 카드 소팅 · 트리 테스트로 근거를 만든다.
 - 랜딩 페이지 계획(SO1 장면 · SO3 스토리라인 · SO4 설득) — [landing.md](./landing.md)
+- 랜딩 페이지 — [index.html](./index.html) · https://yongzu.github.io/IPS/1110/
 
 ## 확인할 것
 
