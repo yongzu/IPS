@@ -21,7 +21,7 @@
 
 ## 슬라이드 (피그마)
 
-[Phi Design Institute 파일 · IPS_WK11 페이지 · 섹션 'IPS Saved 슬라이드 (2026-11-17)'](https://www.figma.com/design/dhXKmqQ2FMSZ3c0VEWETej/Phi-Design-Institute?node-id=2997-6325) — 템플릿 프레임 형식으로 15장(00 표지 ~ 14 다음 단계). 05 현재 IA 구조도, 13 개선 IA 포함. 글꼴은 Noto Sans KR로 들어가 있어 Pretendard로 바꿔야 한다(원격 편집 환경에 Pretendard가 없음).
+[Phi Design Institute 파일 · IPS_WK11 페이지 · 섹션 'IPS Saved 슬라이드 (2026-11-17)'](https://www.figma.com/design/dhXKmqQ2FMSZ3c0VEWETej/Phi-Design-Institute?node-id=2997-6325) — 템플릿 프레임 형식으로 11장(01 장면 ~ 11 해결 방향). 04 현재 IA 구조도 포함. 사용자 지시로 표지 · 진행 과정 · 개선 IA · 다음 단계는 뺐다. 글꼴은 Noto Sans KR로 들어가 있어 Pretendard로 바꿔야 한다(원격 편집 환경에 Pretendard가 없음).
 
 ## 1. 휴리스틱 평가 요약
 
