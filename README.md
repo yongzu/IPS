@@ -31,3 +31,4 @@ Phi Design Institute IPS 과제를 주차별로 모으는 저장소. 주차마�
 - `cursor-*.svg` — 커서(Phi Brain 프로토타입과 같은 것)
 - `tools/dev-server.js` — 로컬 미리보기 서버
 - `tools/w4-chain-svg.js` — 4주차 가설 체인을 SVG로 뽑는 스크립트(쓰는 법은 파일 머리 주석)
+- `tools/figma-pretendard/` — 피그마 로컬 플러그인. 선택한 프레임 안의 Noto Sans KR을 Pretendard로 바꾼다. Claude의 원격 피그마 편집 환경에는 Pretendard가 없어(student · starter 요금제라 조직 공유 글꼴 불가) Noto Sans KR로 넣고, 데스크톱 Figma에서 이 플러그인으로 바꾼다. 처음 한 번: 데스크톱 Figma → 메뉴 Plugins → Development → Import plugin from manifest… → `manifest.json`. 그다음: 프레임 선택 → Plugins → Development → Noto Sans KR → Pretendard.

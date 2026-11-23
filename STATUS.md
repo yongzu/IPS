@@ -4,6 +4,14 @@
 
 ## 현재 단계
 
+### Pretendard 바꾸기 플러그인 `tools/figma-pretendard/` (2026-11-23, 사용자 지시 · Claude Code)
+
+- 사용자 지시: 원격 편집 환경에서 Pretendard를 쓸 수 있게 조치.
+- 확인: 원격 환경 글꼴 1938종 중 Pretendard 없음(한글은 Noto Sans KR · IBM Plex Sans KR · Gothic A1 · NanumGothic 등). 계정 요금제는 student 3 · starter 1 — 조직 공유 글꼴(Organization · Enterprise 전용)을 올릴 수 없어 원격에서 직접 쓰게 할 방법은 없다. 이 컴퓨터에는 Pretendard(정적 9종 + Variable)가 설치돼 있다.
+- 조치: 데스크톱 Figma용 로컬 플러그인 — 선택 안의 Noto Sans KR 범위를 Pretendard Variable(없으면 Pretendard)의 같은 굵기로 바꾼다. Inter 등 다른 글꼴은 그대로. `README.md` 파일 목록에 설치 · 사용법.
+- 검증: `node --check`와 manifest JSON 파싱만 함. 피그마에서 실제로 돌려 보지는 않음.
+- **남은 일(사용자):** 플러그인 가져오기(한 번), 1123 프레임 두 개(3243:8403, 3249:8537)와 1117 슬라이드에 돌리기. compact 프레임 소제목은 템플릿 자간 2.46px를 0으로 바꿔 두었으니 필요하면 되돌리기.
+
 ### 1123 문제 정의 한 장 — 프레임 '문제정의 compact' (2026-11-23, 사용자 지시 · Claude Code)
 
 - 사용자 지시: 템플릿 프레임 '문제정의 compact'(3249:8537, IPS_WK11, x 10916 · y -2931, 1920×1080)에 문제 정의를 핵심만 컴팩트하게.
