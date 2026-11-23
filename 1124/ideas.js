@@ -21,8 +21,10 @@
   function reel(o = {}) {
     const saveCls = (o.saved ? 'fill ' : '') + (o.tap ? 'tap' : o.hold ? 'hold' : '');
     const art = o.art ? `<div class="reel-art txt">${o.art}</div>` : '<div class="reel-art"></div>';
-    return `<div class="scr reel" style="--bg:${o.bg || col(0)}">${status}<div class="reel-top">릴스</div>${art}
-      <div class="rail">${ic('heart')}${ic('comment')}${ic('send')}${ic('save', saveCls)}${ic('more')}</div>
+    const saveIc = o.noSave ? '' : ic('save', saveCls);
+    return `<div class="scr reel" style="--bg:${o.bg || col(0)}">${status}<div class="reel-top">${o.top || '릴스'}</div>${art}
+      ${o.ad ? '<span class="adlbl">광고, 상품 보기</span>' : ''}
+      <div class="rail">${ic('heart')}${ic('comment')}${ic('send', o.tapSend ? 'tap' : '')}${saveIc}${ic('more')}</div>
       ${o.hint ? `<span class="hint" style="bottom:${o.hintY || 112}px">${o.hint}</span>` : ''}
       <div class="cap"><b>@${o.acc || 'design.daily'}</b>${o.cap ? `<p>${o.cap}</p>` : '<i></i><i></i>'}</div>
       ${o.prog != null ? `<div class="prog"><span style="width:${o.prog}%"></span></div>` : ''}
@@ -33,9 +35,11 @@
   const toast = (text, action, o = {}) => `<div class="toast" style="--bg:${o.bg || col(0)}"><span class="th"></span><span>${text}</span>${action ? `<b class="${o.on ? 'on' : ''}">${action}</b>` : ''}</div>`;
   const chips = (list, on = 0) => `<div class="chipsm">${list.map((s, i) => `<span class="${i === on ? 'on' : ''}">${s}</span>`).join('')}</div>`;
   function grid(n, o = {}) {
-    let h = '<div class="g">';
+    let h = `<div class="g${o.cols ? ' c' + o.cols : ''}">`;
     for (let i = 0; i < n; i++) {
       const c = [];
+      if (o.broken && o.broken.includes(i)) c.push('broken');
+      if (o.vote && o.vote[i]) c.push('v');
       if (o.sel) c.push(o.sel.includes(i) ? 'sel' : 'unsel');
       if (o.target === i) c.push('target');
       if (o.dim && o.dim.includes(i)) c.push('dim');
@@ -43,6 +47,7 @@
       if (o.heart && o.heart.includes(i)) inner += `<span class="hrt">${IC.heart.replace('fill:none', '')}</span>`;
       if (o.pin && o.pin.includes(i)) inner += '<em class="pin">고정</em>';
       if (o.label && o.label[i]) inner += `<em class="t">${o.label[i]}</em>`;
+      if (o.vote && o.vote[i]) inner += `<em class="vote">${o.vote[i]}</em>`;
       h += `<i class="${c.join(' ')}" style="--c:${col(i + (o.s || 0))}">${inner}</i>`;
     }
     return h + '</div>';
@@ -52,6 +57,8 @@
   const colsSheet = (items, hit) => `<div class="cols">${items.map((it, i) => it === '+' ? '<div class="col new"><i>+</i>새 컬렉션</div>' : `<div class="col ${i === hit ? 'hit' : ''}" style="--c:${col(i + 3)}"><i></i>${it.replace('*', '')}${it.endsWith('*') ? '<span class="who"><em></em><em style="background:#9ab"></em></span>' : ''}</div>`).join('')}</div>`;
   const sheet = (title, body, right = '') => `<div class="sheet"><span class="handle"></span><div class="sh-title">${title}<span>${right}</span></div>${body}</div>`;
   const listrow = (name, n, i, extra = '') => `<div class="listrow" style="--c:${col(i)}"><i></i><span>${name}</span><em>${n}</em>${extra}</div>`;
+  const H = { reel, saved, toast, chips, grid, lbl, tiles, colsSheet, sheet, listrow, ic, col, IC, status };
+  const MORE = typeof window.IPS_MORE === 'function' ? window.IPS_MORE(H) : [];
 
   const IDEAS = [
     {
@@ -185,6 +192,7 @@
       ]
     }
   ];
+  IDEAS.push(...MORE);
 
   const REFS = window.IPS_REFS || [];
   const refLink = (i) => (i >= 0 && REFS[i]) ? `<a class="src" href="${REFS[i][1]}" target="_blank" rel="noopener">출처</a>` : '';
@@ -193,13 +201,15 @@
 
   // 한눈에 표
   const tb = document.getElementById('matrix-body');
-  if (tb) tb.innerHTML = IDEAS.map((d, i) => `<tr><td>${String(i + 1).padStart(2, '0')}</td><td><a href="#i${i + 1}">${d.name}</a></td>${STG.map(s => `<td class="c">${d.stage.includes(s) ? `<span class="dot${d.stage[0] === s ? '' : ' o'}" aria-label="${s}"></span>` : ''}</td>`).join('')}<td>${bar(d.ev)}<span>${d.evNote}</span></td><td>${d.who}</td></tr>`).join('');
+  const groupRow = (i) => i === 0 ? '<tr class="grp"><td colspan="7">처음 10가지</td></tr>' : i === 10 ? '<tr class="grp"><td colspan="7">더한 40가지, 저장 11~21, 탐색 22~36, 관리 37~50</td></tr>' : '';
+  if (tb) tb.innerHTML = IDEAS.map((d, i) => `${groupRow(i)}<tr data-stage="${d.stage.join(' ')}"><td>${String(i + 1).padStart(2, '0')}</td><td><a href="#i${i + 1}">${d.name}</a></td>${STG.map(s => `<td class="c">${d.stage.includes(s) ? `<span class="dot${d.stage[0] === s ? '' : ' o'}" aria-label="${s}"></span>` : ''}</td>`).join('')}<td>${bar(d.ev)}<span>${d.evNote}</span></td><td>${d.who}</td></tr>`).join('');
 
   // 아이디어
   const root = document.getElementById('ideas');
   if (root) root.innerHTML = IDEAS.map((d, i) => {
     const steps = d.flow.map((f, k) => `${k ? '<span class="arrow" aria-hidden="true">→</span>' : ''}<figure class="step"><div class="phone" aria-hidden="true">${f[1]}</div><figcaption><b>${k + 1}</b>${f[0]}</figcaption></figure>`).join('');
-    return `<article class="idea" id="i${i + 1}" aria-labelledby="i${i + 1}-t">
+    const head = i === 0 ? '<h3 class="grp-head">처음 10가지</h3>' : i === 10 ? '<h3 class="grp-head">더한 40가지, 저장(11~21)</h3>' : i === 21 ? '<h3 class="grp-head">탐색(22~36)</h3>' : i === 36 ? '<h3 class="grp-head">관리(37~50)</h3>' : '';
+    return `${head}<article class="idea" id="i${i + 1}" data-stage="${d.stage.join(' ')}" aria-labelledby="i${i + 1}-t">
       <header class="idea-head"><span class="n">${String(i + 1).padStart(2, '0')}</span><h3 id="i${i + 1}-t">${d.name}</h3><p class="line">${d.line}</p>
         <div class="tags">${d.stage.map((s, k) => `<span class="tag${k ? '' : ' is-ink'}">${s}</span>`).join('')}<span class="tag">대상 ${d.who}</span><span class="tag">${d.ins}</span></div></header>
       <div class="flow" role="group" aria-label="${d.name} 화면 흐름">${steps}</div>
@@ -209,6 +219,16 @@
         <div class="card"><h3>근거와 조심할 점</h3><span class="k">인터뷰 근거</span><p>${bar(d.ev)} ${d.evNote}</p><span class="k">조심할 점</span><p>${d.risk}</p><span class="k">어떻게 확인하나</span><p>${d.test}</p></div>
       </div></article>`;
   }).join('');
+
+  // 단계 거르기
+  const fb = document.getElementById('stage-filter');
+  if (fb) fb.addEventListener('click', (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    fb.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    const s = b.dataset.s;
+    document.querySelectorAll('#ideas .idea, #matrix-body tr[data-stage]').forEach(el => { el.hidden = !!s && !el.dataset.stage.split(' ').includes(s); });
+    document.querySelectorAll('#ideas .grp-head, #matrix-body tr.grp').forEach(el => { el.hidden = !!s; });
+  });
 
   // 목차 표시
   const links = [...document.querySelectorAll('.toc a')];
