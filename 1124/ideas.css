@@ -304,3 +304,56 @@ ol.refs a{color:var(--text);text-decoration:underline;text-decoration-color:var(
 .colorrow i.on{box-shadow:0 0 0 2px #fff,0 0 0 3.5px #222}
 .lift{position:absolute;z-index:6;width:62px;aspect-ratio:3/4;border-radius:6px;background:var(--c);box-shadow:0 10px 22px rgba(0,0,0,.3);transform:rotate(-6deg)}
 .check{margin-left:auto;width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #bbb}.check.on{background:#0095f6;box-shadow:none}
+
+
+/* 07 데스크 리서치 - Phi Brain IPS 연구 카드 형식 */
+.rgroup{margin-top:36px}
+.rgroup-label{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:14px}
+.rgroup-label b{color:var(--ink);font-weight:600}
+.rgroup-label span{color:var(--faint);font-size:.9em}
+.rcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.rcard{font:inherit;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:8px;padding:18px 20px;border:0;border-radius:10px;background:#fff;box-shadow:var(--box-shadow);color:var(--text);transition:transform 240ms var(--ease-move),box-shadow 240ms}
+.rcard:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(0,0,0,.08),0 1px 4px rgba(0,0,0,.04)}
+.rcard:focus-visible{outline:1px solid #777;outline-offset:4px}
+.rnum{color:var(--faint);font-variant-numeric:tabular-nums}
+.rclaim{color:var(--ink);font-weight:600;line-height:1.45;word-break:keep-all}
+.rtitle{color:var(--faint);font-size:.88em;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rmore{margin-top:auto;color:var(--muted);font-size:.88em}
+.think{margin-top:40px;padding:24px 26px;border-radius:10px;background:var(--tile);color:var(--text);line-height:1.75;word-break:keep-all}
+.think h3{color:var(--ink);font-weight:600}
+.think h3+ol{margin-top:10px}
+.think ol+h3{margin-top:24px}
+.think ol{counter-reset:t;display:grid;gap:8px}
+.think li{counter-increment:t;position:relative;padding-left:26px}
+.think li::before{content:counter(t);position:absolute;left:0;color:var(--faint);font-variant-numeric:tabular-nums}
+.think li b{color:var(--ink);font-weight:600}
+.rsrc-title{margin:36px 0 12px;color:var(--ink);font-weight:600}
+#rpanel{width:min(980px,calc(100% - 32px));max-height:calc(100% - 48px);padding:0;border:0;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.25);color:var(--text)}
+#rpanel::backdrop{background:rgba(0,0,0,.35)}
+.rp-bar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--rule);background:#fff;color:var(--faint);font-variant-numeric:tabular-nums}
+.rp-bar button{font:inherit;cursor:pointer;margin-left:6px;padding:4px 10px;border:0;border-radius:8px;background:var(--tile);color:var(--ink)}
+.rp-scroll{overflow:auto;max-height:calc(100vh - 110px)}
+.rp-body{padding:24px}
+.rp-grid{display:grid;grid-template-columns:260px 1fr;gap:32px}
+.rp-num{display:block;color:var(--faint);font-size:2em;line-height:1;font-variant-numeric:tabular-nums}
+.rp-grid h3{margin-top:12px;color:var(--ink);font-weight:600;line-height:1.4;word-break:keep-all}
+.rp-sub{margin-top:8px;color:var(--faint);line-height:1.5}
+.rp-grid dl{margin-top:18px;display:grid;gap:12px}
+.rp-grid dt{color:var(--faint);font-size:.88em}
+.rp-grid dd{margin:2px 0 0;color:var(--text);line-height:1.55;word-break:keep-all}
+.rp-grid section+section{margin-top:26px}
+.rp-grid h4{color:var(--ink);font-weight:600}
+.rp-g{margin-top:12px}
+.rp-g h5{margin:0;color:var(--muted);font-weight:600;font-size:.92em}
+.rp-g ol{margin-top:6px;display:grid;gap:6px;line-height:1.7;word-break:keep-all}
+.rp-g li{position:relative;padding-left:12px}
+.rp-g li::before{content:"-";position:absolute;left:0;color:var(--faint)}
+.rp-g li b{color:var(--ink);font-weight:600}
+.rp-quote{margin-top:10px;padding-left:14px;border-left:2px solid var(--ink);color:var(--ink);line-height:1.75;word-break:keep-all}
+.rflow{margin-top:12px;display:grid;gap:8px}
+.rflow-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.rflow-step{padding:5px 10px;border-radius:8px;background:var(--tile);color:var(--text);font-size:.92em}
+.rflow-step.end{background:var(--ink);color:#fff}
+.rflow-arrow{color:var(--faint)}
+.rp-grid .src{display:inline-block;margin-top:24px}
+@media(max-width:700px){.rp-grid{grid-template-columns:1fr;gap:16px}.rp-body{padding:18px}.think{padding:20px 18px}}
