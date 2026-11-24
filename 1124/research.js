@@ -185,7 +185,22 @@
   const pad = (n) => String(n).padStart(2, '0');
   const root = document.getElementById('research-groups');
   if (!root) return;
-  root.innerHTML = GROUPS.map(([g, t, s]) => `<div class="rgroup"><h3 class="rgroup-label"><b>${g}. ${t}</b><span>${s}</span></h3><div class="rcards">${R.map((p, i) => p.g === g ? `<button type="button" class="rcard" data-i="${i}" aria-haspopup="dialog"><span class="rnum">${pad(i + 1)}</span><span class="rclaim">${p.claim}</span><span class="rtitle">${p.title}</span><span class="rmore">핵심 내용 보기 →</span></button>` : '').join('')}</div></div>`).join('');
+  window.IPS_RESEARCH = R;
+  const fid = (p) => 'r:' + p.title;
+  root.innerHTML = `<div class="filter" id="research-filter" role="group" aria-label="리서치 거르기"><button type="button" data-rf="" aria-pressed="true">전체 ${R.length}</button><button type="button" data-rf="fav" aria-pressed="false">★ 즐겨찾기 0</button></div>` +
+    GROUPS.map(([g, t, s]) => `<div class="rgroup" data-g="${g}"><h3 class="rgroup-label"><b>${g}. ${t}</b><span>${s}</span></h3><div class="rcards">${R.map((p, i) => p.g === g ? `<div class="rcard-wrap" data-fid="${fid(p).replace(/"/g, '&quot;')}"><button type="button" class="rcard" data-i="${i}" aria-haspopup="dialog"><span class="rnum">${pad(i + 1)}</span><span class="rclaim">${p.claim}</span><span class="rtitle">${p.title}</span><span class="rmore">핵심 내용 보기 →</span></button><button type="button" class="fav fav-card" data-fav="${fid(p).replace(/"/g, '&quot;')}" aria-pressed="false">☆</button></div>` : '').join('')}</div></div>`).join('');
+  let rf = '';
+  function applyRF() {
+    const fav = window.IPSFav;
+    root.querySelectorAll('.rcard-wrap').forEach(w => { w.hidden = rf === 'fav' && !(fav && fav.has(w.dataset.fid)); });
+    root.querySelectorAll('.rgroup').forEach(g => { g.hidden = ![...g.querySelectorAll('.rcard-wrap')].some(w => !w.hidden); });
+    const n = fav ? fav.list().filter(x => x.startsWith('r:')).length : 0;
+    root.querySelector('[data-rf="fav"]').textContent = `★ 즐겨찾기 ${n}`;
+    root.querySelectorAll('[data-rf]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.rf === rf)));
+  }
+  root.addEventListener('click', (e) => { const b = e.target.closest('[data-rf]'); if (!b) return; rf = b.dataset.rf; applyRF(); });
+  if (window.IPSFav) window.IPSFav.onChange(applyRF);
+  applyRF();
 
   const dlg = document.getElementById('rpanel');
   const body = dlg.querySelector('.rp-body');
@@ -202,7 +217,10 @@
       <section><h4>도식화</h4><div class="rflow" role="img" aria-label="${p.claim} 도식">${flow(p.flow)}</div></section>
       <a class="src" href="${p.url}" target="_blank" rel="noopener">원문 보기 →</a></div></div>`;
     dlg.querySelector('.rp-scroll').scrollTop = 0;
+    const fb = dlg.querySelector('.rp-fav');
+    if (fb) { fb.dataset.fav = fid(p); if (window.IPSFav) window.IPSFav.paintAll(); }
   }
+  window.IPS_openResearch = (i) => { render(i); if (!dlg.open) dlg.showModal(); };
   root.addEventListener('click', (e) => { const b = e.target.closest('.rcard'); if (!b) return; render(+b.dataset.i); if (!dlg.open) dlg.showModal(); });
   dlg.addEventListener('click', (e) => {
     if (e.target === dlg || e.target.closest('[data-close]')) dlg.close();

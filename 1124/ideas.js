@@ -202,7 +202,7 @@
   // 한눈에 표
   const tb = document.getElementById('matrix-body');
   const groupRow = (i) => i === 0 ? '<tr class="grp"><td colspan="7">처음 10가지</td></tr>' : i === 10 ? '<tr class="grp"><td colspan="7">더한 40가지, 저장 11~21, 탐색 22~36, 관리 37~50</td></tr>' : '';
-  if (tb) tb.innerHTML = IDEAS.map((d, i) => `${groupRow(i)}<tr data-stage="${d.stage.join(' ')}"><td>${String(i + 1).padStart(2, '0')}</td><td><a href="#i${i + 1}">${d.name}</a></td>${STG.map(s => `<td class="c">${d.stage.includes(s) ? `<span class="dot${d.stage[0] === s ? '' : ' o'}" aria-label="${s}"></span>` : ''}</td>`).join('')}<td>${bar(d.ev)}<span>${d.evNote}</span></td><td>${d.who}</td></tr>`).join('');
+  if (tb) tb.innerHTML = IDEAS.map((d, i) => `${groupRow(i)}<tr data-id="i${i + 1}" data-stage="${d.stage.join(' ')}"><td>${String(i + 1).padStart(2, '0')}</td><td><button type="button" class="fav fav-sm" data-fav="i${i + 1}" aria-pressed="false">☆</button><a href="#i${i + 1}">${d.name}</a></td>${STG.map(s => `<td class="c">${d.stage.includes(s) ? `<span class="dot${d.stage[0] === s ? '' : ' o'}" aria-label="${s}"></span>` : ''}</td>`).join('')}<td>${bar(d.ev)}<span>${d.evNote}</span></td><td>${d.who}</td></tr>`).join('');
 
   // 아이디어
   const root = document.getElementById('ideas');
@@ -210,7 +210,7 @@
     const steps = d.flow.map((f, k) => `${k ? '<span class="arrow" aria-hidden="true">→</span>' : ''}<figure class="step"><div class="phone" aria-hidden="true">${f[1]}</div><figcaption><b>${k + 1}</b>${f[0]}</figcaption></figure>`).join('');
     const head = i === 0 ? '<h3 class="grp-head">처음 10가지</h3>' : i === 10 ? '<h3 class="grp-head">더한 40가지, 저장(11~21)</h3>' : i === 21 ? '<h3 class="grp-head">탐색(22~36)</h3>' : i === 36 ? '<h3 class="grp-head">관리(37~50)</h3>' : '';
     return `${head}<article class="idea" id="i${i + 1}" data-stage="${d.stage.join(' ')}" aria-labelledby="i${i + 1}-t">
-      <header class="idea-head"><span class="n">${String(i + 1).padStart(2, '0')}</span><h3 id="i${i + 1}-t">${d.name}</h3><p class="line">${d.line}</p>
+      <header class="idea-head"><span class="n">${String(i + 1).padStart(2, '0')}</span><h3 id="i${i + 1}-t">${d.name}<button type="button" class="fav" data-fav="i${i + 1}" aria-pressed="false">☆</button></h3><p class="line">${d.line}</p>
         <div class="tags">${d.stage.map((s, k) => `<span class="tag${k ? '' : ' is-ink'}">${s}</span>`).join('')}<span class="tag">대상 ${d.who}</span><span class="tag">${d.ins}</span></div></header>
       <div class="flow" role="group" aria-label="${d.name} 화면 흐름">${steps}</div>
       <div class="idea-body">
@@ -225,10 +225,23 @@
   if (fb) fb.addEventListener('click', (e) => {
     const b = e.target.closest('button'); if (!b) return;
     fb.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    const s = b.dataset.s;
-    document.querySelectorAll('#ideas .idea, #matrix-body tr[data-stage]').forEach(el => { el.hidden = !!s && !el.dataset.stage.split(' ').includes(s); });
-    document.querySelectorAll('#ideas .grp-head, #matrix-body tr.grp').forEach(el => { el.hidden = !!s; });
+    applyFilter(b.dataset.s);
   });
+  let curFilter = '';
+  function applyFilter(s) {
+    curFilter = s;
+    const fav = window.IPSFav;
+    document.querySelectorAll('#ideas .idea, #matrix-body tr[data-stage]').forEach(el => {
+      const id = el.id || el.dataset.id;
+      el.hidden = s === 'fav' ? !(fav && fav.has(id)) : (!!s && !el.dataset.stage.split(' ').includes(s));
+    });
+    document.querySelectorAll('#ideas .grp-head, #matrix-body tr.grp').forEach(el => { el.hidden = !!s; });
+    const n = fav ? fav.list().filter(x => /^i\d+$/.test(x)).length : 0;
+    const fb2 = document.querySelector('#stage-filter [data-s="fav"]');
+    if (fb2) fb2.textContent = `★ 즐겨찾기 ${n}`;
+  }
+  if (window.IPSFav) window.IPSFav.onChange(() => applyFilter(curFilter));
+  applyFilter('');
 
   // 목차 표시
   const links = [...document.querySelectorAll('.toc a')];

@@ -357,3 +357,30 @@ ol.refs a{color:var(--text);text-decoration:underline;text-decoration-color:var(
 .rflow-arrow{color:var(--faint)}
 .rp-grid .src{display:inline-block;margin-top:24px}
 @media(max-width:700px){.rp-grid{grid-template-columns:1fr;gap:16px}.rp-body{padding:18px}.think{padding:20px 18px}}
+
+
+/* 즐겨찾기 */
+.fav{font:inherit;cursor:pointer;border:0;background:none;color:var(--faint);line-height:1;padding:2px 4px;border-radius:6px;transition:color 160ms,transform 160ms}
+.fav:hover{color:var(--ink);transform:scale(1.15)}
+.fav[aria-pressed="true"]{color:#d9a400}
+.idea-head h3 .fav{margin-left:8px;font-size:.9em;vertical-align:2px}
+.fav-sm{font-size:1em;margin-right:4px}
+.rcard-wrap{position:relative;display:flex}
+.rcard-wrap>.rcard{flex:1}
+.fav-card{position:absolute;top:10px;right:10px;font-size:1.15em;z-index:1}
+.rp-bar .fav.rp-fav{background:var(--tile);font-size:1.05em;padding:4px 10px;margin-left:0}
+.rp-bar .fav.rp-fav[aria-pressed="true"]{color:#d9a400}
+.fav-fab{position:fixed;right:24px;bottom:24px;z-index:60;font:inherit;cursor:pointer;padding:10px 16px;border:0;border-radius:22px;background:var(--ink);color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.fav-fab:hover{transform:translateY(-1px)}
+#favdlg{width:min(720px,calc(100% - 32px));max-height:calc(100% - 48px);padding:0;border:0;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.25);color:var(--text)}
+#favdlg::backdrop{background:rgba(0,0,0,.35)}
+#favdlg .rp-bar span:first-child{color:var(--ink);font-weight:600}
+.fav-body{padding:18px 22px 22px;overflow:auto;max-height:calc(100vh - 140px)}
+.fav-body h4{margin:14px 0 8px;color:var(--ink);font-weight:600}
+.fav-body h4:first-child{margin-top:0}
+.fav-body ul{display:grid;gap:8px}
+.fav-body li{display:grid;grid-template-columns:auto 1fr;column-gap:6px;align-items:baseline}
+.fav-body li a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.fav-body li span{grid-column:2;color:var(--faint);font-size:.9em;line-height:1.5}
+.fav-body .fav{color:#d9a400}
+@media(max-width:640px){.fav-fab{right:16px;bottom:16px}}

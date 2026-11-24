@@ -7,7 +7,7 @@
 <meta name="description" content="인스타그램 저장됨 프로젝트, 인터뷰 8명과 다른 저장 플랫폼 조사로 만든 해결 아이디어 50가지와 화면 흐름">
 <link rel="icon" type="image/png" href="../assets/mark.png">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<link rel="stylesheet" href="ideas.css?v=20261124-3">
+<link rel="stylesheet" href="ideas.css?v=20261124-4">
 </head>
 <body>
 <header class="toolbar">
@@ -101,8 +101,8 @@
 
 <section class="chapter" id="s4" aria-labelledby="s4-title">
 <div class="chapter-head"><span class="num">04</span><h2 id="s4-title">아이디어 50가지, 저장부터 다시 찾기까지</h2>
-<p>모든 흐름은 릴스에서 시작한다. 1번 화면은 저장하는 순간, 2번과 3번 화면은 저장 직후와 저장함에서 찾는 모습이다. 휴대폰 화면은 흐름을 보여 주는 스케치이고, 실제 인스타그램 화면과 다르다. 아래 버튼으로 단계별로 거를 수 있다(표도 함께 걸러진다).</p>
-<div class="filter" id="stage-filter" role="group" aria-label="단계로 거르기"><button type="button" data-s="" aria-pressed="true">전체 50</button><button type="button" data-s="저장" aria-pressed="false">저장</button><button type="button" data-s="탐색" aria-pressed="false">탐색</button><button type="button" data-s="관리" aria-pressed="false">관리</button></div></div>
+<p>모든 흐름은 릴스에서 시작한다. 1번 화면은 저장하는 순간, 2번과 3번 화면은 저장 직후와 저장함에서 찾는 모습이다. 휴대폰 화면은 흐름을 보여 주는 스케치이고, 실제 인스타그램 화면과 다르다. 아래 버튼으로 단계별로 거를 수 있다(표도 함께 걸러진다). 제목 옆 ☆를 누르면 즐겨찾기, 오른쪽 아래 버튼으로 모아 본다(이 브라우저에만 저장).</p>
+<div class="filter" id="stage-filter" role="group" aria-label="단계로 거르기"><button type="button" data-s="" aria-pressed="true">전체 50</button><button type="button" data-s="저장" aria-pressed="false">저장</button><button type="button" data-s="탐색" aria-pressed="false">탐색</button><button type="button" data-s="관리" aria-pressed="false">관리</button><button type="button" data-s="fav" aria-pressed="false">★ 즐겨찾기 0</button></div></div>
 <div class="chapter-body" id="ideas"></div>
 </section>
 
@@ -179,7 +179,7 @@
 </section>
 
 <dialog id="rpanel" aria-labelledby="rp-title">
-<div class="rp-bar"><span class="rp-count"></span><span><button type="button" data-step="-1" aria-label="이전">←</button><button type="button" data-step="1" aria-label="다음">→</button><button type="button" data-close aria-label="닫기">닫기</button></span></div>
+<div class="rp-bar"><span class="rp-count"></span><span><button type="button" class="fav rp-fav" data-fav="" aria-pressed="false">☆</button><button type="button" data-step="-1" aria-label="이전">←</button><button type="button" data-step="1" aria-label="다음">→</button><button type="button" data-close aria-label="닫기">닫기</button></span></div>
 <div class="rp-scroll"><div class="rp-body"></div></div>
 </dialog>
 
@@ -228,8 +228,9 @@ window.IPS_REFS=[
 ];
 document.getElementById('refs').innerHTML=window.IPS_REFS.map(function(r){return '<li><a href="'+r[1]+'" target="_blank" rel="noopener">'+r[0]+'</a></li>'}).join('');
 </script>
+<script src="fav.js?v=20261124-2"></script>
 <script src="ideas-more.js?v=20261124-2"></script>
-<script src="ideas.js?v=20261124-2"></script>
-<script src="research.js?v=20261124-2"></script>
+<script src="ideas.js?v=20261124-3"></script>
+<script src="research.js?v=20261124-3"></script>
 </body>
 </html>
