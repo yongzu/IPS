@@ -247,7 +247,7 @@ ol.refs a{color:var(--text);text-decoration:underline;text-decoration-color:var(
 .emo{position:absolute;right:38px;bottom:112px;z-index:8;display:flex;gap:6px;padding:6px 9px;border-radius:22px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.25);font-size:15px;line-height:1}
 .emo span{display:inline-block}.emo span.on{transform:scale(1.35)}
 .toast .tch{display:flex;gap:4px}.toast .tch em{font-style:normal;padding:3px 7px;border-radius:7px;background:#444;font-size:9px}.toast .tch em.on{background:#fff;color:#222}
-.toast.col{flex-wrap:wrap}.toast.col .tch{width:100%;padding-left:30px}
+.toast.tcol{flex-wrap:wrap}.toast.tcol .tch{width:100%;padding-left:30px}
 .shot{position:absolute;left:10px;bottom:84px;width:60px;height:118px;border-radius:8px;border:2px solid #fff;background:var(--bg,#999);z-index:8;box-shadow:0 6px 16px rgba(0,0,0,.3)}
 .confirm{margin-top:10px;padding:8px 10px;border-radius:9px;background:#f4f4f4;font-size:9.5px;display:flex;justify-content:space-between;gap:6px}
 .confirm b{color:#0064c8}
@@ -384,3 +384,30 @@ ol.refs a{color:var(--text);text-decoration:underline;text-decoration-color:var(
 .fav-body li span{grid-column:2;color:var(--faint);font-size:.9em;line-height:1.5}
 .fav-body .fav{color:#d9a400}
 @media(max-width:640px){.fav-fab{right:16px;bottom:16px}}
+
+
+/* 08 솔루션 안 A, B, C */
+.ctable-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:12px}
+.ctable{min-width:640px}
+.ctable th{color:var(--ink);font-weight:600}
+.ctable tbody th{color:var(--faint);font-weight:400;white-space:nowrap}
+.concept{padding:48px 0;border-top:1px solid var(--rule)}
+.concept .idea-head .n{font-weight:600;color:var(--ink)}
+.cev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:24px}
+.cev{padding:18px 20px;border-radius:10px;background:#fff;box-shadow:var(--box-shadow);color:var(--text);line-height:1.65;word-break:keep-all}
+.cev h4{color:var(--ink);font-weight:600}
+.cev ul,.concept .card ul{margin-top:6px;display:grid;gap:6px}
+.cev li,.concept .card li{position:relative;padding-left:12px}
+.cev li::before,.concept .card li::before{content:"-";position:absolute;left:0;color:var(--faint)}
+.ddm{position:absolute;right:42px;width:132px;border-radius:12px;background:rgba(250,250,250,.97);box-shadow:0 10px 26px rgba(0,0,0,.3);color:#222;z-index:8;overflow:hidden;font-size:9.5px}
+.ddm-h{padding:7px 10px;color:#888;font-size:8.5px;border-bottom:1px solid #eee}
+.ddm-r{display:flex;align-items:center;gap:7px;padding:6px 10px;border-top:1px solid #f1f1f1}
+.ddm-r i{flex:0 0 auto;width:18px;height:18px;border-radius:5px;background:var(--c,#ddd);font-style:normal;display:flex;align-items:center;justify-content:center;color:#999}
+.ddm-r span{flex:1}
+.ddm-r b{color:#0a84ff}
+.ddm-r.on{background:#eef4fb;font-weight:700}
+.ddm-new i{background:#f0f0f0}
+.tinput{width:100%;margin-top:6px;padding:6px 8px;border-radius:7px;background:#3a3a3a;color:#fff;font-size:10px}
+
+.toast .tch{flex-wrap:wrap;gap:4px}.toast .tch em{white-space:nowrap}
+.listrow span.check{flex:0 0 14px}

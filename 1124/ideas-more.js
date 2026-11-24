@@ -4,7 +4,7 @@ window.IPS_MORE = (H) => {
   const { reel, saved, toast, chips, grid, lbl, tiles, colsSheet, sheet, listrow, ic, col } = H;
   const mode = (t) => `<span class="mode">${t}</span>`;
   const emo = (list, on) => `<div class="emo">${list.map((e, i) => `<span class="${i === on ? 'on' : ''}">${e}</span>`).join('')}</div>`;
-  const toastCh = (text, list, on, bg) => `<div class="toast col" style="--bg:${bg || col(0)}"><span class="th"></span><span>${text}</span><div class="tch">${list.map((s, i) => `<em class="${i === on ? 'on' : ''}">${s}</em>`).join('')}</div></div>`;
+  const toastCh = (text, list, on, bg) => `<div class="toast tcol" style="--bg:${bg || col(0)}"><span class="th"></span><span>${text}</span><div class="tch">${list.map((s, i) => `<em class="${i === on ? 'on' : ''}">${s}</em>`).join('')}</div></div>`;
   const opt = (icon, a, b, c, on) => `<div class="opt${on ? ' on' : ''}" style="--c:${c}"><i>${icon}</i><span><b>${a}</b>${b}</span></div>`;
   const banner = (t) => `<div class="banner">${t}</div>`;
   const noti = (t, b, c) => `<div class="noti" style="--c:${c}"><i></i><div><b>${t}</b>${b}</div></div>`;

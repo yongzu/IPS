@@ -58,6 +58,7 @@
   const sheet = (title, body, right = '') => `<div class="sheet"><span class="handle"></span><div class="sh-title">${title}<span>${right}</span></div>${body}</div>`;
   const listrow = (name, n, i, extra = '') => `<div class="listrow" style="--c:${col(i)}"><i></i><span>${name}</span><em>${n}</em>${extra}</div>`;
   const H = { reel, saved, toast, chips, grid, lbl, tiles, colsSheet, sheet, listrow, ic, col, IC, status };
+  window.IPS_H = H;
   const MORE = typeof window.IPS_MORE === 'function' ? window.IPS_MORE(H) : [];
 
   const IDEAS = [
