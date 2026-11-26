@@ -1,0 +1,35 @@
+# IPS · Iterative Problem Solving
+
+Phi Design Institute IPS 과제를 주차별로 모으는 저장소. 주차마다 폴더 하나(`WK05/`, `WK06/` …)에 과제 원문과 산출물을 둔다. 4주차만 예전 이름 `w4/`(주소 유지).
+
+- 페이지: https://yongzu.github.io/IPS/ (GitHub Pages — `main` 브랜치 루트를 그대로 배포, 빌드 없음)
+- 로컬: `node tools/dev-server.js . 5511` → http://localhost:5511/ (파일을 고치면 열린 탭이 새로고침된다)
+- 작업 기록: [STATUS.md](./STATUS.md) · 작업 규칙: [AGENTS.md](./AGENTS.md)
+
+## 주차
+
+| 주차 | 폴더 | 내용 |
+|---|---|---|
+| 1~3라운드 | `yongzu/Phi_Brain` 저장소 `ips/` | Phi Brain · Discover·Define·Develop·Deliver (https://yongzu.github.io/Phi_Brain/ips/) — 그대로 둔다 |
+| 4주차 | `w4/` | 인스타그램 저장(Saved) — 목적 · 사용자 분석 · 가설 체인 · 피드백 반영 · 선택 이유 · 확인 계획 |
+| 5주차 | `WK05/` | 가설 검증 인터뷰 — 사용자 선정 기준 · 검증 여부 판단 기준 · 인터뷰 답변 · 다시 만든 가설 체인 (https://yongzu.github.io/IPS/WK05/) |
+| 6주차 | `WK06/` | 가설 하나 다시 검증 — 원칙 · 가설 · 선정 기준 · 지지/반증/착시 기준 · 질문 시뮬레이션 (`form.md`, 인터뷰 전) |
+| 7주차 | `WK07/` | 가설 체인 전체 검증 — JTBD · 현상 · 가설 4개 · 기준 · 질문 · 근거 · 판정 · 근본 원인 (`form.md`, 가상 인터뷰) |
+| 8주차 | `WK08/` | 문제 상황과 해결 화면 프로토타입 — 마일스톤 · 피그마 스토리보드(As-is · To-be) · 프로토타입 · 제출 글 (`README.md`, `form.md`) |
+| 11/10 | `1110/` | 핵심 인사이트와 문제 정의 다시 세우기 — 저장 · 진입 · 찾기 세 축 + 회사 쪽, 진행안, 랜딩 페이지 (https://yongzu.github.io/IPS/1110/) |
+| 11/17 | `1117/` | 진단에서 리디자인까지 — 진행 순서(진단 4단계 · 해결 5단계), 휴리스틱 평가 (`heuristic.md`) |
+| 11/24 | `1124/` | 다시 찾는 저장, 해결 아이디어 50 - 다른 저장 플랫폼 25곳 조사, 아이디어별 릴스 저장부터 다시 찾기까지 화면 흐름 (https://yongzu.github.io/IPS/1124/) |
+| 11/23 | `1123/` | 핵심 문제를 '다시 찾기'로 — 저장 · 탐색 · 관리 세 단계, 인사이트 · 가설 · UT 과제 · 마일스톤 |
+
+4주차는 2026-10-11에 `yongzu/Phi_Brain`의 `ips/w4/`에서 커밋 이력째로 옮겨 왔다. 옛 주소 `/Phi_Brain/ips/w4/`는 이 저장소로 넘겨준다.
+
+## 파일
+
+- `index.html` — 주차 목록. 스타일은 `w4/w4.css`를 같이 쓴다.
+- `WK05/` — `README.md`(과제 원문) · `interview-guide.md` · `deliverables.md`(산출물 글) · `index.html` · `wk05.css` · `wk05.js`(페이지 — yongzu.github.io 스타일, 가설 체인 CHAIN 데이터)
+- `assets/` — 로고 · 마크(yongzu.github.io에서) · `lenis.min.js`(부드러운 스크롤)
+- `w4/` — `index.html`(본문) · `w4.css` · `w4.js`(가설 체인 CHAIN 데이터와 그리기) · `hypothesis-chain.svg` · `hypothesis-chain-min.svg`(피그잼 붙여넣기용)
+- `cursor-*.svg` — 커서(Phi Brain 프로토타입과 같은 것)
+- `tools/dev-server.js` — 로컬 미리보기 서버
+- `tools/w4-chain-svg.js` — 4주차 가설 체인을 SVG로 뽑는 스크립트(쓰는 법은 파일 머리 주석)
+- `tools/figma-pretendard/` — 피그마 로컬 플러그인. 선택한 프레임 안의 Noto Sans KR을 Pretendard로 바꾼다. Claude의 원격 피그마 편집 환경에는 Pretendard가 없어(student · starter 요금제라 조직 공유 글꼴 불가) Noto Sans KR로 넣고, 데스크톱 Figma에서 이 플러그인으로 바꾼다. 처음 한 번: 데스크톱 Figma → 메뉴 Plugins → Development → Import plugin from manifest… → `manifest.json`. 그다음: 프레임 선택 → Plugins → Development → Noto Sans KR → Pretendard.

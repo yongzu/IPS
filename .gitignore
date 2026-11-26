@@ -1,1 +1,14 @@
+# Phi course repo: files kept only on this PC
+*.psd
+*.ai
+*.indd
+*.mp4
+*.mov
+**/Source/*.pdf
+node_modules/
+.env
 .claude/
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
